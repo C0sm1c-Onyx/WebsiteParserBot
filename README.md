@@ -47,6 +47,6 @@ docker-compose up
 ```
 
 
-#### по пути WebsiteParserBot/data/exel_file/ лежит заготовка - можно загрузить его и проверить работу бота
+#### по пути WebsiteParserBot/data/exel_files/ лежит заготовка - можно загрузить его и проверить работу бота
 
 ### тг бот - [t.me/website_parse_bot](t.me/website_parse_bot)

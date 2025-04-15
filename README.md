@@ -18,13 +18,14 @@ POSTGRES_PASSWORD=your_db_password
 Запустить проект можно двумя способами:
 
 1.
+[!] В .env файле должно быть прописано POSTGRES_HOST=localhost
 ```bash
 cd WebsiteParserBot
 ```
 ```bash
 poetry install
 ```
-[!] В .env файле прописать POSTGRES_HOST=localhost
+
 ```bash
 poetry run alembic upgrade head
 ```
@@ -33,12 +34,11 @@ poetry run python run_bot.py
 ```
 
 
-
 2. 
+[!] В .env файле должно быть прописано POSTGRES_HOST=postgres
 ```bash
 cd WebsiteParserBot
 ```
-[!] В .env файле прописать POSTGRES_HOST=postgres
 ```bash
 docker-compose build
 ```

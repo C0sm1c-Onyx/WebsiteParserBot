@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlalchemy import select
+from sqlalchemy import select, and_
 
 from parsing.models import ParsedDataModel
 from parsing.config import settings

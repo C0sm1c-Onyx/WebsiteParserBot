@@ -25,6 +25,9 @@ cd WebsiteParserBot
 poetry install
 ```
 ```bash
+poetry run alembic upgrade head
+```
+```bash
 poetry run python run_bot.py
 ```
 

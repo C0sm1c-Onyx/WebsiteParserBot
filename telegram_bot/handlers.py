@@ -46,20 +46,27 @@ async def parse_file(message: Message):
     data = pd.read_excel(file_path)
     df = pd.DataFrame(data, columns=['title', 'url', 'xpath'])
 
-    total_cost, i, answer_text = 0, 1, ""
+    total_cost, i, fail, answer_text = 0, 0, 0, ""
     for title, url, xpath in zip(df["title"], df["url"], df["xpath"]):
+        print(title, url, xpath, i)
         parsed_data = await website_parsing_by_xpath(url, xpath)
 
         total_cost += float(parsed_data) if parsed_data else 0
 
         if parsed_data is None:
             parsed_data = 'Не удалось распарсить цену'
+            fail += 1
 
-        answer_text += f'{i}. Название - {title}\nСсылка - {url}\nXPATH - {xpath}\nЦена - {parsed_data}\n\n'
+        answer_text += f'{i+1}. Название - {title}\nСсылка - {url}\nXPATH - {xpath}\nЦена - {parsed_data}\n\n'
         i += 1
 
         await save_data_on_db(title, url, xpath, parsed_data)
 
-    await message.answer(
-        f"{answer_text}Средняя стоимость товара: {round(total_cost/i, 2)}"
-    )
+    try:
+        await message.answer(
+            f"{answer_text}Средняя стоимость товара: {round(total_cost/(i - fail), 2)}"
+        )
+    except ZeroDivisionError:
+        await message.answer(
+            answer_text
+        )

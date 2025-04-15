@@ -15,7 +15,12 @@ async_session = async_sessionmaker(async_engine)
 
 async def is_not_exist_xpath_on_db(xpath):
     async with async_session() as session:
-        stmt = select(ParsedDataModel).where(ParsedDataModel.xpath == xpath)
+        stmt = select(ParsedDataModel).where(
+            and_(
+                ParsedDataModel.xpath == xpath,
+                ParsedDataModel.url == url
+            )
+        )
         is_exist_xpath = await session.execute(stmt)
 
         if is_exist_xpath.first():

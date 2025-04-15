@@ -24,11 +24,11 @@ poetry install
 poetry run python run_bot.py
 ```
 
-3. 
+2. 
 ```bash
 docker-compose build
 
 docker-compose up
 ```
 
-### Ссылка на тг бота t.me/website_parse_bot
+### Ссылка на тг бота [t.me/website_parse_bot](t.me/website_parse_bot)

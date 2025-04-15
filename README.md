@@ -1,8 +1,7 @@
 # WebsiteParserBot
 
-## Запуск проекта
 
-### Настройка окружения
+### Настройка окружения и запуск проекта
 
 1. Клонируйте репозиторий:
 ```bash
@@ -17,18 +16,21 @@ POSTGRES_PASSWORD=your_db_password
 ```
 
 Запустить проект можно двумя способами:
+
 1. 
 ```bash
 poetry install
-
+```
+```bash
 poetry run python run_bot.py
 ```
 
 2. 
 ```bash
 docker-compose build
-
+```
+```bash
 docker-compose up
 ```
 
-### Ссылка на тг бота [t.me/website_parse_bot](t.me/website_parse_bot)
+### тг бот - [t.me/website_parse_bot](t.me/website_parse_bot)

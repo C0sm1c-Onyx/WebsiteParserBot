@@ -31,6 +31,8 @@ poetry run alembic upgrade head
 poetry run python run_bot.py
 ```
 
+В .env файле прописать POSTGRES_HOST=localhost
+
 2. 
 ```bash
 cd WebsiteParserBot
@@ -41,5 +43,7 @@ docker-compose build
 ```bash
 docker-compose up
 ```
+
+В .env файле прописать POSTGRES_HOST=postgres
 
 ### тг бот - [t.me/website_parse_bot](t.me/website_parse_bot)

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web_parser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    working_dir: /usr/src/app/
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${POSTGRES_DB_NAME}
+      DB_USER: ${POSTGRES_NAME}
+      DB_PASS: ${POSTGRES_PASSWORD}
+    volumes:
+      - .:/usr/src/app
+    command: poetry run uvicorn main:app --reload
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.6-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+      POSTGRES_USER: ${POSTGRES_NAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  telegram_bot:
+    build:
+      context: .
+    working_dir: /usr/src/app/
+
+    command: bash -c "poetry run alembic upgrade head && poetry run python run_bot.py"
+
+    depends_on:
+      - postgres
+      - web_parser

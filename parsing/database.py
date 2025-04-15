@@ -13,7 +13,7 @@ async_engine = create_async_engine(
 async_session = async_sessionmaker(async_engine)
 
 
-async def is_not_exist_xpath_on_db(xpath):
+async def is_not_exist_data_on_db(xpath, url):
     async with async_session() as session:
         stmt = select(ParsedDataModel).where(
             and_(
@@ -30,7 +30,7 @@ async def is_not_exist_xpath_on_db(xpath):
 
 
 async def save_data_on_db(title, url, xpath, parsed_data):
-    if await is_not_exist_xpath_on_db(xpath):
+    if await is_not_exist_data_on_db(xpath, url):
         session = async_session()
         session.add(
             ParsedDataModel(

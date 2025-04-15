@@ -17,7 +17,10 @@ POSTGRES_PASSWORD=your_db_password
 
 Запустить проект можно двумя способами:
 
-1. 
+1.
+```bash
+cd WebsiteParserBot
+```
 ```bash
 poetry install
 ```
@@ -26,6 +29,9 @@ poetry run python run_bot.py
 ```
 
 2. 
+```bash
+cd WebsiteParserBot
+```
 ```bash
 docker-compose build
 ```
